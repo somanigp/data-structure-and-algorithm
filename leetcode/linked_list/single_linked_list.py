@@ -1,4 +1,4 @@
-# A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+# A linked list is a linear data structure, in which the elements are not stored at continuous memory locations.
 # In simple words, a linked list consists of nodes where each node contains a data field and
 # a reference(link) to the next node in the list.
 # Our first node is where head points and we can access all the elements of the linked list using the head.
@@ -16,10 +16,6 @@ class Node:
 	def __init__(self, data):
 		self.data = data
 		self.next = None
-
-# Create a LinkedList class
-
-# To iterate in a linked list, you need current node and position
 
 
 class LinkedList:
