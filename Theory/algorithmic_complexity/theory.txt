@@ -1,0 +1,29 @@
+Measure of efficiency of program.
+efficiency: Time and Space (Storage)
+Time: Google uses PageRank Algo to search and sort web pages based on query.
+Space: lite versions of software, reducing size of html file, css,etc.
+
+Time: Timer, Operation Involved, Order of Growth
+Time Complexity: Relation between time and input
+
+Order of Growth: Big Oh Notation: Upper bound of asymptotic growth (order of growth)
+1. program runtime vs input, order of and not exact relation
+2. Worst case scenario
+3. Largest factor to be considered. Like nested loop, etc.
+
+Big Oh notation: O()
+1. O(n) -> Linear (like: 5n+4, 5 and 4 are operations), linear search
+2. O(n^2) -> Quadratic.Like when nested loop, bubble sort
+3. for big number n>log(n), thus o(n)
+4. nlog(n) > n, for big number. nlog(n) -> merge sort, etc
+5. 3^n > n^30, for big numbers thus O(3^n)
+6. O(constant) -> item fetching through index, arithmatic operations
+7. O(log(n)) ->  Binary Search. input increases by 10 thus time increases by 1 for log 10
+8. O(ab) -> Quadratic. a and b are 2 arrays
+
+Order n > nlog(n) > n^2 : increasing time
+
+exponential is opp. of log
+Final :
+O(constant) > O(log(n)) > O(n) > O(nlog(n)) > O(n^2) > O(3^n)
+
