@@ -16,14 +16,14 @@ Big Oh notation: O()
 2. O(n^2) -> Quadratic.Like when nested loop, bubble sort
 3. for big number n>log(n), thus o(n)
 4. nlog(n) > n, for big number. nlog(n) -> merge sort, etc
-5. 3^n > n^30, for big numbers thus O(3^n)
+5. 3^n > n^30, for big numbers thus O(3^n) : Exponential
 6. O(constant) -> item fetching through index, arithmatic operations
 7. O(log(n)) ->  Binary Search. input increases by 10 thus time increases by 1 for log 10
 8. O(ab) -> Quadratic. a and b are 2 arrays
 
-Order n > nlog(n) > n^2 : increasing time
+Order n < nlog(n) < n^2 : increasing time
 
 exponential is opp. of log
-Final :
+Final, Which is better:
 O(constant) > O(log(n)) > O(n) > O(nlog(n)) > O(n^2) > O(3^n)
 

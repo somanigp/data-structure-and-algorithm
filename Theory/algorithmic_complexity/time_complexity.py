@@ -50,3 +50,18 @@ def factorial(k):  # For k=5, 5 function calls are made, for k=10, 10 function c
         return k * factorial(k-1)
 
 
+# 1.7^n is the order of growth 
+def fib(n):  # less than O(2^n) -> Imperfect exponential. It is opposite of log as input adds then operations multiply
+    if n == 1 or n == 0:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+    
+# input : 1 -> function calls : 1
+# input : 2 -> function calls : 2
+# input : 3 -> function calls : 4
+# input : 5 -> function calls : 14 
+# input : 6 -> function calls : 32
+
+# Aritmatic Operation : Constant time O(1)
+

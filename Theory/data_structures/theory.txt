@@ -1,0 +1,5 @@
+DS: way to store and organize data efficiently
+
+Linear DS: Storing data linearly, one after the other like array, linked list, stacks, queues and hashing
+Non Linear DS: Non linear arrangement of data. Like Graphs, trees ,
+
