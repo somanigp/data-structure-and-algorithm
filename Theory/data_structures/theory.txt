@@ -1,5 +1,10 @@
 DS: way to store and organize data efficiently
 
 Linear DS: Storing data linearly, one after the other like array, linked list, stacks, queues and hashing
-Non Linear DS: Non linear arrangement of data. Like Graphs, trees ,
+Non-Linear DS: Non-linear arrangement of data. Like Graphs, trees ,
 
+Array: For read heavy applications. Pros: traverse and indexing is fast.
+Cons: Write Operations (Insert and Delete) are slow.
+
+LinkedList: For write heavy applications. Pros: Write Operations through head are fast.
+Cons: To read need to traverse ie O(n).
