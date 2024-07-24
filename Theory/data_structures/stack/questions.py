@@ -1,10 +1,10 @@
-from typing import Union
+from typing import Any, Union
 # From root directory start importing
 # from Theory.data_structures.linked_list.single_linked_list_class import LinkedList
 
 
 class Node:
-    def __init__(self, value):
+    def __init__(self, value: Any):
         self.data = value
         self.next = None
 
@@ -43,12 +43,74 @@ def text_editor(str_input: str, instructions: str) -> str:
             pointer = new_node
     result = ''
     while pointer:
-        result += pointer.data
+        # Easy way to print reverse of a stack.
+        # The pop value will be before the already existing values, thus printing from the bottom.***
+        result = pointer.data + result
         pointer = pointer.next
-    # Or you can empty the second stack, pop one by one from pointer and put in other stack
-    # and then print it.
-    return result[::-1]
+    return result
+
+
+# Comparing 2 and selecting one, comparison and elimination -> stack
+def find_celebrity(mat: Any) -> Union[int, None]:
+    # With O(n^2) we can brute force this.
+    # But with stacks its O(4n) -> O(n).
+    pointer: Union[None, Node] = None
+    for i in range(len(mat)):
+        new_node = Node(i)
+        new_node.next = pointer
+        pointer = new_node
+    while pointer.next:  # Till only one number remains in stack. That will be pointer ie stack with only 1 element.
+        a = pointer.data
+        b = pointer.next.data
+        if mat[a][b] == 1:   # a knows b so a is not celeb.
+            pointer = pointer.next
+        else:  # else means its 0 and no need for mat[a][b] == 0.
+            # As everyone knows the celeb, b is not celeb.
+            pointer.next = pointer.next.next  # Skipping b
+    # Now there is only one possibility, now need to check if there is no celebrity
+    # We are checking if the celebrity knows no one.
+    for i in range(len(mat)):
+        if i == pointer.data:  # It doesn't matter if the celebrity knows itself.
+            continue
+        if mat[pointer.data][i] == 1:
+            return None
+    # Check if everyone knows the celebrity.
+    for i in range(len(mat)):
+        if i == pointer.data:  # It doesn't matter if the celebrity knows itself.
+            continue
+        if mat[i][pointer.data] == 0:
+            return None
+    return pointer.data
+
+
+def balanced_parenthesis(inp_str: str) -> bool:
+    # Check valid parenthesis.
+    pointer: Union[Node, None] = None
+    parenthesis_tracker = {")": "(",
+                           "}": "{",
+                           "]": "["}
+    for char in inp_str:
+        if char in "({[":
+            new_node = Node(char)
+            new_node.next = pointer
+            pointer = new_node
+        elif char in ")}]":
+            if pointer is None:  # Meaning nothing to remove, meaning no ([{ in stack.
+                return False
+            if pointer.data != parenthesis_tracker.get(char):  # Meaning proper parenthesis are not matching.
+                return False
+            else:
+                pointer = pointer.next  # If matching pop.
+    return pointer is None  # Stack should be empty.
 
 
 print(reverse_string("hello_govind"))
 print(text_editor("hello", "uu"))
+mat1 = [
+    [0, 0, 1, 1],
+    [0, 0, 1, 0],
+    [0, 0, 0, 0],
+    [0, 0, 1, 0]
+]
+print(find_celebrity(mat1))
+print(balanced_parenthesis("([{a+b}*c] + [a-b]) {}"))
