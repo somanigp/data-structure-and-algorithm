@@ -31,12 +31,14 @@ class Stack:
         new_node.next = self.top
         self.top = new_node
 
-    def pop(self) -> None:
+    def pop(self) -> Any:
         """Remove topmost value of the stack"""
         if self.is_empty():
             raise ValueError("Stack is empty")
         else:
+            new_value = self.top.data
             self.top = self.top.next
+            return new_value
 
     def __str__(self) -> str:
         pointer = self.top
@@ -87,7 +89,8 @@ class ArrStack:
         """We are assuming it is java/c++ stack thus of fixed size."""
         self.size = size
         self.stack = [None] * self.size  # print([None] * 2)  # [None, None]
-        self.top = -1  # 1st element to be put at index 0, so when no. of elements = 1, index = 0.
+        self.top = -1  # Index of topmost element. # 1st element to be put at index 0, so when no. of elements = 1,
+        # index = 0.
         # Thus top starts with -1
 
     def push(self, value: Any):
@@ -96,7 +99,7 @@ class ArrStack:
         if self.top + 1 == self.size:  # or self.top == self.size - 1, which means last index=len-1
             raise ValueError("Stack is full")
         else:
-            self.top += 1
+            self.top += 1  # Going to the next available index.
             self.stack[self.top] = value
 
     def pop(self) -> Any:
