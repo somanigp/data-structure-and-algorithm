@@ -7,9 +7,9 @@ class Dictionary:
     def __init__(self, size: int):
         self.size = size
         self.slots = [None] * self.size  # For storing keys  # ** arr of len=size and all elements are None.
-        self.data = [None] * self.size  # For storing data at the same index as keys.
+        self.data = [None] * self.size  # For storing value at the same index as keys.
 
-    def __setitem__(self, key, value):  # NOTE: ***MAGIC METHOD
+    def __setitem__(self, key: Any, value: Any):  # NOTE: ***MAGIC METHOD
         # Can use dict1[0] = "Welcome". Type of way to put key and value
         self.put(key, value)
 
@@ -40,6 +40,8 @@ class Dictionary:
         return abs(hash(key)) % self.size  # abs makes all positive
 
     def rehash_function_linear(self, old_hash_value):
+        # old_hash_value will be between 0 to size and is the remainder, so we are increasing the remainder by 1 thus
+        # increasing index by 1.
         return (old_hash_value + 1) % self.size  # Linear Probing : old_hash_value + 1
 
     def get(self, key):
@@ -58,9 +60,20 @@ class Dictionary:
         else:  # If None encountered first then key doesn't exist
             raise ValueError("Key doesn't exist")
 
-    def __getitem__(self, item):  # MAGIC METHOD
+    def __getitem__(self, item) -> Any:  # MAGIC METHOD
         # x[key] is enabled through this. ** NOTE.
-        self.get(item)
+        return self.get(item)
+
+    def __str__(self):
+        result = ""
+        for x, y in zip(self.slots, self.data):  # zip class for accessing 2 lists simultaneously.
+            a, b = x, y
+            if type(x) is str:
+                a = f'"{x}"'
+            if type(y) is str:
+                b = f'"{y}"'
+            result += f"{a} : {b}, "
+        return "[" + result[:-2] + "]"
 
 
 # dict.update(other_dict) : This method updates the dictionary with the key-value pairs from another dictionary or an
@@ -75,11 +88,11 @@ d1 = Dictionary(3)
 d1["java"] = 100
 d1["python"] = 217
 d1["php"] = 0
-print(d1.slots, d1.data)
+print(d1)
 
 d1["java"] = 126
 print(d1.slots, d1.data)
 # d1["c++"] = 10  # This will fail as we have not added a functionality to increase size to add more items i.e make
 # dict dynamic. We have also not added functionality to return error or None is item not found in fixed length dict.
-print(d1.get("java"))
-print(d1.get("C"))  # Key doesn't exist
+print(d1["java"])
+# print(d1["C"])  # Key doesn't exist
