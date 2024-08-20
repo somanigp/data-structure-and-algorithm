@@ -37,12 +37,18 @@ class Dictionary:
     def hash_function(self, key: Any):  # Need hash value for key only and in dict we get items from key and value
         # has same hash value as key, i.e same index to corresponding key.
         # NOTE: ** print(-5 % 2)  # Result is +1, positive.
+        # For every run of the program, this is generating different value for string key.***
         return abs(hash(key)) % self.size  # abs makes all positive
 
     def rehash_function_linear(self, old_hash_value):
         # old_hash_value will be between 0 to size and is the remainder, so we are increasing the remainder by 1 thus
         # increasing index by 1.
         return (old_hash_value + 1) % self.size  # Linear Probing : old_hash_value + 1
+
+    def rehash_function_quadratic(self, old_hash_value, attempt: int):
+        # Value of attempt will increase in main function ie put function in the while loop.
+        # Attempt will start with 1, and then keep increasing by 1 in value.
+        return (old_hash_value + (attempt ** 2)) % self.size  # ** -> 'raise to' in python
 
     def get(self, key):
         # To return corresponding value
@@ -67,12 +73,13 @@ class Dictionary:
     def __str__(self):
         result = ""
         for x, y in zip(self.slots, self.data):  # zip class for accessing 2 lists simultaneously.
-            a, b = x, y
-            if type(x) is str:
-                a = f'"{x}"'
-            if type(y) is str:
-                b = f'"{y}"'
-            result += f"{a} : {b}, "
+            if x is not None:
+                a, b = x, y
+                if type(x) is str:
+                    a = f'"{x}"'
+                if type(y) is str:
+                    b = f'"{y}"'
+                result += f"{a} : {b}, "
         return "[" + result[:-2] + "]"
 
 
@@ -91,8 +98,11 @@ d1["php"] = 0
 print(d1)
 
 d1["java"] = 126
-print(d1.slots, d1.data)
+print(d1)
 # d1["c++"] = 10  # This will fail as we have not added a functionality to increase size to add more items i.e make
 # dict dynamic. We have also not added functionality to return error or None is item not found in fixed length dict.
 print(d1["java"])
 # print(d1["C"])  # Key doesn't exist
+
+# NOTE: **In actual python dict also if you pass list as a key it will give error as list is not hashable.
+# my_dict = {[1,2,3]: "hello"}  # TypeError: unhashable type: 'list' **

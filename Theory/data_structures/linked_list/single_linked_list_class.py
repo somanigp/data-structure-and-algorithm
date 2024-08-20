@@ -156,9 +156,12 @@ class LinkedList:
         if not 0 <= index < self.n:
             raise IndexError("Index out of bounds")
 
+        if self.head is None:
+            raise ValueError("LL is empty")
+
         pointer = self.head
         # Loops index no of times
-        for i in range(index):
+        for i in range(index):  # 0 + iterations = iterations ( thus lands on correct index )
             pointer = pointer.next
         # Pointer is the node at index 'index'.
         return pointer.data
