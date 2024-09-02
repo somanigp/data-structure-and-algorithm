@@ -234,6 +234,7 @@ class Dictionary:
             raise ValueError("The key doesn't exist in the dict")
         else:  # Delete by key, if key exists
             self.buckets[bucket_index].delete_by_key(key)
+            self.size -= 1
 
 
 D1 = Dictionary(3)
